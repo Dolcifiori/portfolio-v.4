@@ -22,7 +22,6 @@ export function setupCaseStudy(view) {
   const title = view.querySelector('#case-study-title');
   const subtitle = view.querySelector('.case-study__subtitle');
   const tags = view.querySelector('.case-tags');
-  const back = view.querySelector('.case-study__back');
   const top = view.querySelector('.case-study__top');
   const scroll = view.querySelector('.case-study__scroll');
   const overview = view.querySelector('.case-study__overview');
@@ -81,7 +80,7 @@ export function setupCaseStudy(view) {
     if (viewer.open) viewer.close();
   }
 
-  function render(study, fromCategory) {
+  function render(study) {
     closeMedia();
     view.classList.toggle('case-study--story', Boolean(study.backdrop));
     const sources = study.backdrop ?? originalBackdrop;
@@ -92,10 +91,6 @@ export function setupCaseStudy(view) {
     title.textContent = study.title;
     menuTitle.textContent = study.menuTitle ?? 'Что было сделано:';
     subtitle.textContent = study.subtitle;
-    // Если кейс открыли из каталога — возвращаем в тот же раздел,
-    // а не в родную категорию кейса (она может быть другой, как у Иинжира).
-    back.href = `#cases/${fromCategory ?? study.category}`;
-
     tags.replaceChildren(...study.tags.map(tag => {
       const style = tag.featured ? 'primary' : 'dock';
       const pill = element('li', `glass-button glass-button--${style} case-tag`, tag.label);
