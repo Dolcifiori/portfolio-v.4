@@ -77,6 +77,7 @@ export function setupCaseStudy(view) {
   });
 
   function closeMedia() {
+    for (const dialog of [...view.querySelectorAll('dialog[open]')].reverse()) dialog.close();
     if (viewer.open) viewer.close();
   }
 
@@ -99,6 +100,7 @@ export function setupCaseStudy(view) {
     }));
     tags.hidden = study.tags.length === 0;
 
+    const renderBlock = study.createBlockRenderer?.();
     const rendered = study.sections.map(item => {
       const section = element('section', 'case-section');
       if (item.id === 'cover-motion') section.classList.add('case-section--cover-note');
@@ -108,7 +110,10 @@ export function setupCaseStudy(view) {
       if (item.eyebrow) section.append(element('p', 'case-section__eyebrow', item.eyebrow));
       section.append(heading);
       for (const block of item.blocks) {
-        if (block.type === 'media' && block.items.length) {
+        const customBlock = renderBlock?.(block);
+        if (customBlock) {
+          section.append(customBlock);
+        } else if (block.type === 'media' && block.items.length) {
           section.append(caseGallery(block.items, { open: openMedia }));
         } else if (block.type === 'text') {
           const paragraph = element('p', 'case-section__text', block.text);
