@@ -1,7 +1,7 @@
 import { buttonRow, caseCard, filterGroup, glassButton, setupDialog } from './components.js';
-import { categories, projects, telegramUrl } from './portfolio-data.js';
-import { caseStudies, caseUrl } from './case-studies.js';
-import { setupCaseStudy } from './case-study.js';
+import { categories, projects, telegramUrl } from './portfolio-data.js?v=4';
+import { caseStudies, caseUrl } from './case-studies.js?v=4';
+import { setupCaseStudy } from './case-study.js?v=4';
 
 const home = document.querySelector('#home');
 const catalog = document.querySelector('#cases');

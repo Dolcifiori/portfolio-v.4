@@ -1,4 +1,4 @@
-import { dolciCase } from './case-studies.js';
+import { dolciCase } from './case-studies.js?v=4';
 import { investFutureCase } from './investfuture-case.js';
 import { mayaReevesCase } from './maya-reeves-case.js';
 import { inzhirCase } from './inzhir-case.js';
